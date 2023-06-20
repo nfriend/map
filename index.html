@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Map</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      property="og:image"
+      content="https://map.nathanfriend.io/screenshot.jpg"
+    />
+    <meta property="og:title" content="Map" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://map.nathanfriend.io" />
+    <meta
+      property="og:description"
+      content="A web page that displays a choropleth map that is configured by data passed through the URL."
+    />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#333333" />
+
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .label-popover {
+        text-align: center;
+        max-width: 200px;
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      .label-popover .label-header {
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      #help-dialog {
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+          Roboto, "Helvetica Neue", Ubuntu, Arial, sans-serif;
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      #help-dialog.shown {
+        display: initial;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="map"></div>
+
+    <div id="help-dialog">
+      <h1>Welcome to <span id="site-name">globe.nathanfriend.io</span>!</h1>
+      <p>
+        This web page displays a
+        <a
+          style="color: white"
+          href="https://en.wikipedia.org/wiki/Choropleth_map"
+          target="_blank"
+          >choropleth map</a
+        >
+        that is configured by data passed through the URL.
+      </p>
+      <p>
+        There are currently no URL parameters provided. Check out
+        <a
+          style="color: white; font-weight: bold"
+          href="https://gitlab.com/nfriend/map/-/blob/main/README.md"
+          target="_blank"
+          >the README</a
+        >
+        to get started.
+      </p>
+    </div>
+
+    <script>
+      const searchParams = new URLSearchParams(
+        window.location.hash.replace("#", "?")
+      );
+
+      if ([...searchParams].length === 0) {
+        document.querySelector("#help-dialog").classList.add("shown");
+      }
+
+      document.querySelector("#site-name").textContent =
+        window.location.hostname;
+    </script>
+  </body>
+</html>
