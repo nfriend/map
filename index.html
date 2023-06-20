@@ -47,8 +47,8 @@
       }
 
       #help-dialog {
-        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
-          Roboto, "Helvetica Neue", Ubuntu, Arial, sans-serif;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI',
+          Roboto, 'Helvetica Neue', Ubuntu, Arial, sans-serif;
         display: none;
         position: absolute;
         top: 0;
@@ -65,6 +65,9 @@
         display: initial;
       }
     </style>
+
+    <script src="./third-party/plotly-2.24.1.min.js"></script>
+    <script src="./third-party/d3.min.js"></script>
   </head>
 
   <body>
@@ -96,15 +99,48 @@
 
     <script>
       const searchParams = new URLSearchParams(
-        window.location.hash.replace("#", "?")
+        window.location.hash.replace('#', '?'),
       );
 
       if ([...searchParams].length === 0) {
-        document.querySelector("#help-dialog").classList.add("shown");
+        document.querySelector('#help-dialog').classList.add('shown');
       }
 
-      document.querySelector("#site-name").textContent =
+      document.querySelector('#site-name').textContent =
         window.location.hostname;
+
+      var data = [
+        {
+          type: 'choropleth',
+          locationmode: 'ISO-3',
+          locations: ['USA', 'CAN', 'MEX'],
+          z: [20, 10],
+          text: ['hello', 'canada!!', 'mexico!'],
+          autocolorscale: true,
+        },
+        {
+          type: 'choropleth',
+          locationmode: 'ISO-3',
+          locations: ['MEX'],
+          z: [1],
+          text: ['mexico'],
+          colorscale: [
+            [0, 'blue'],
+            [1, 'blue'],
+          ],
+        },
+      ];
+
+      var layout = {
+        title: 'Graph Title!',
+        geo: {
+          projection: {
+            type: 'robinson',
+          },
+        },
+      };
+
+      Plotly.newPlot('map', data, layout, { showLink: false });
     </script>
   </body>
 </html>
