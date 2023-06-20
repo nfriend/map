@@ -1,6 +1,6 @@
 # map
 
-A web page that displays a [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map), configured by data passed through the URL: [globe.nathanfriend.io](https://globe.nathanfriend.io)
+A web page that displays a [choropleth map](https://en.wikipedia.org/wiki/Choropleth_map), configured by data passed through the URL: [map.nathanfriend.io](https://map.nathanfriend.io)
 
 ## Attributions
 
